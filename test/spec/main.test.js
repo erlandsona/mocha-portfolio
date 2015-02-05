@@ -22,10 +22,20 @@ describe('getStock', function () {
       stock.Name.should.equal('Apple Inc');
       done();
     });
-
-//    getStock('MSFT', function (stock) {
-//      stock.Name.should.equal('Microsoft Crap');
-//    });
+  });
+  it('should return another stock object', function (done) {
+    getStock('MSFT', function (stock) {
+      stock.Name.should.equal('Microsoft Corp');
+        done();
+    });
   });
 });
 
+describe('addStockToTable', function () {
+  it('should use stock info to append the table', function () {
+    var stock = { Name: 'SuperCorp', Symbol: 'SCRP', LastPrice: 12.34 };
+    $('tr').length.should.equal(0);
+    addStockToTable(stock);
+    $('tr').length.should.equal(1);
+  });
+});
