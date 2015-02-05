@@ -1,6 +1,13 @@
 function addStockToTable (stock) {
   var $row = $('<tr></tr>');
-  $('body').append($row);
+
+  $row.append('<td>' + stock.Name + '</td>');
+  $row.append('<td>' + stock.Symbol + '</td>');
+  $row.append('<td>' + stock.LastPrice + '</td>');
+
+  $('tbody').append($row);
+
+  return $row;
 }
 
 
