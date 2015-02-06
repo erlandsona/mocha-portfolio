@@ -1,9 +1,13 @@
 /* jshint jquery: true */
 /* global async: false */
 
+function refreshStockPrices(stocks) {
+  var $trs = $('tr');
 
-
-
+  _.forEach(stocks, function (stock, i) {
+    $($($trs[i]).find('td')[3]).text(stock.LastPrice);
+  });
+}
 
 function addStockToTable(stock) {
   var $row = $('<tr></tr>');
@@ -26,22 +30,18 @@ function getStock(symbol, cb) {
   }, 'jsonp');
 }
 
-
-
 function getMultipleStocks(symbols, cb) {
   async.map(symbols,
-    function(symbol, innercb) {
+    function (symbol, innercb) {
       getStock(symbol, function(stock){
         innercb(null, stock);
       });
     },
-    function(err, stocks){
+    function (err, stocks){
       cb(stocks);
     }
   );
-}
-
-
+ }
 
 function hello() {
   return 'world';
