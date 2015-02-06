@@ -14,6 +14,25 @@ describe('hello', function () {
   });
 });
 
+
+
+describe('totalStocks', function () {
+  it('should return a sum of the LastPrices', function () {
+    var stocks = [
+                   { Symbol: 'AAPL', LastPrice: 12.45 },
+                   { Symbol: 'MSFT', LastPrice: 23.56 }
+                 ];
+    var stocks2 = [
+                    { Symbol: 'BANANA', LastPrice: 0.10 },
+                    { Symbol: 'XBUCKS', LastPrice: 0.20 }
+                  ];
+    totalStocks(stocks).should.be.closeTo(36.01, 0.01);
+    totalStocks(stocks2).should.be.closeTo(0.30, 0.01);
+  });
+});
+
+
+
 describe('DOM', function () {
   describe('table', function () {
     beforeEach(function () {

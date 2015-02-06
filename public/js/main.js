@@ -9,12 +9,28 @@ function refreshStockPrices(stocks) {
   });
 }
 
+
+
+function totalStocks (stocks) {
+  return _.reduce(stocks, function(prev, curr) {
+    return prev + curr.LastPrice;
+  }, 0);
+//  var total = 0;
+//  _.forEach(stocks, function(stock) {
+//    total += stock.LastPrice;
+//  });
+//  return total;
+}
+
+
+
 function addStockToTable(stock) {
   var $row = $('<tr></tr>');
 
   if (stock.Message) {
     return;
-  } else {
+  }
+
   $row.append('<td>' + stock.Name + '</td>');
   $row.append('<td>' + stock.Symbol + '</td>');
   $row.append('<td>' + stock.LastPrice + '</td>');
@@ -23,9 +39,8 @@ function addStockToTable(stock) {
   $('tbody').append($row);
 
   return $row;
-
-  }
 }
+
 function getStock(symbol, cb) {
   var url = 'http://dev.markitondemand.com/Api/v2/Quote/jsonp?symbol=' + symbol;
 
